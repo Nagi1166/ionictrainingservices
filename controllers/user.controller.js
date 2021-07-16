@@ -21,6 +21,30 @@ exports.getUsers = async (req, res) => {
     });
 };
 
+exports.updateUser = async (req, res) => {
+    console.log(req.params.id)
+    console.log(req.body.mobile)
+    console.log(req.file)
+    // var config = {
+    //     driver: 'msnodesqlv8',
+    //     connectionString: 'Driver=SQL Server;Server=DESKTOP-ND0KI3A;Database=users;Trusted_Connection=true;'
+    // }
+    // await sql.connect(config, err => {
+    //     new sql.Request().query('select * from users', (err, result) => {
+    //         if (err) {
+    //             console.log("Error ", err);
+    //             res.send({ status: 'Error', message: 'serverError', errorMessage: err });
+    //         }
+    //         else
+    //             res.send({ status: 'success', message: '', result: result.recordset });
+    //     });
+    // });
+    // sql.on('error', err => { // Connection borked.
+    //     console.log("Connection not success ", err);
+    //     res.send('connection error');
+    // });
+};
+
 exports.register = async (req, res) => {
     console.log("Request ", req.body);
     var config = {
