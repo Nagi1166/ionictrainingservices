@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getUsers, register, updateUser } = require('../controllers/user.controller');
+const { getUsers, register, updateUser, getUser } = require('../controllers/user.controller');
 const { verifyToken, isAdmin, isUser } = require('../middleware/auth.jwt');
 const multer = require("multer");
 var path = require('path')
@@ -20,7 +20,9 @@ var upload = multer({ storage: storage });
 /* GET users listing. */
 router.get('/', [verifyToken, isAdmin], getUsers);
 
-router.put('/:id', upload.single('profilePic'), updateUser)
+router.get('/:id', [verifyToken, isUser], getUser);
+
+router.put('/:id', [verifyToken, isUser], upload.single('profilePic'), updateUser)
 
 router.post('/', register);
 

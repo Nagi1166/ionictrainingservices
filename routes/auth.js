@@ -30,6 +30,7 @@ router.post('/login', async function (req, res, next) {
             var userId = result.recordset[0].ID;
             var userName = `${result.recordset[0].FirstName} ${result.recordset[0].LastName}`;
             var userEmail = result.recordset[0].email;
+            var profilePic = result.recordset[0].profilePic;
             request.input("userId", sql.Numeric, userId);
             request.query('select * from user_Roles UR Inner Join Roles R ON R.ID = UR.RoleId WHERE UR.UserId=@userId', (err, rolesResult) => {
                 if (err) {
@@ -55,6 +56,7 @@ router.post('/login', async function (req, res, next) {
                     username: userName,
                     email: userEmail,
                     roles: roles,
+                    profilePic: profilePic,
                     accessToken: token
                 });
             });
